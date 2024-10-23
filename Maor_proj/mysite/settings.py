@@ -156,9 +156,10 @@ DEBUG = True  # (Leave True for testing, but set to False for production)
 
 # Define the location for static files
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'mysite','static'),
-]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'mysite','static'),
+#]
 #STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Optional: Add MEDIA settings if you have user uploads
