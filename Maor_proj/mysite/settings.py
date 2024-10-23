@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
 # Application definition
 
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'Maor_proj.mysite.wsgi.application'
     #}
 #}
         
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -100,21 +100,22 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
-"""
+
 
 # run with waitress: waitress-serve --port=8000 Maor_proj.mysite.wsgi:application
 import dj_database_url
-#database_url = os.environ.get('DATABASE_URL')
-#DATABASES['default'] = dj_database_url.parse(database_url, conn_max_age=600)
+database_url = os.environ.get('DATABASE_URL')
+DATABASES['default'] = dj_database_url.parse(database_url, conn_max_age=600)
 #toy database sqlite3
 #DATABASES['default'] = dj_database_url.config(default='sqlite:///db.sqlite3')
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
