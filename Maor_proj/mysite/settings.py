@@ -156,11 +156,13 @@ DEBUG = True  # (Leave True for testing, but set to False for production)
 
 # Define the location for static files
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-#STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, 'mysite','static'),
-#]
 #STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Optional: Add MEDIA settings if you have user uploads
 #MEDIA_URL = '/media/'
