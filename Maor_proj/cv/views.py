@@ -5,6 +5,8 @@ from .models import CV
 from django.http import HttpResponse, Http404
 import os
 from django.conf import settings
+from django.urls import reverse
+
 
 def cv_success(request):
     return HttpResponse("CV uploaded successfully.")
