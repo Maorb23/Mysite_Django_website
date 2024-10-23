@@ -32,7 +32,7 @@ def cv_view(request):
         }
         return render(request, 'cv/cv_template.html', context)
     except Exception as e:
-        print("Exception in cv_view:", e)
+        #print("Exception in cv_view:", e)
         import traceback
         traceback.print_exc()
         return HttpResponse("An error occurred.")
