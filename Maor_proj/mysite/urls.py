@@ -32,7 +32,7 @@ urlpatterns = [
     path('articles/', include('Maor_proj.articles.urls')),  
     path('polls/', include('Maor_proj.polls.urls')),  # Include the polls URLs
     path('admin/', admin.site.urls),
-]
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
