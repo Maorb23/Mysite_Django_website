@@ -41,7 +41,7 @@
         
         <!-- Add more sections as needed -->
 
-        <!-- Upload Form -->
+<!--         <!-- Upload Form -->
         <div class="upload-form">
             <h2>Upload Your CV</h2>
             <form method="post" enctype="multipart/form-data">
@@ -49,17 +49,17 @@
                 {{ form.as_p }}
                 <button type="submit">Upload</button>
             </form>
-        </div>
+        </div> -->
 
         <!-- Display Uploaded CV -->
         {% if cv and cv.cv_file %}
             <div class="cv-display">
                 <h2>Uploaded CV</h2>
-                <p><a href="https://github.com/Maorb23/NewTest/blob/main/Maor_proj/media/cv_files/maor-blumberg-cv_updated.pdf" target="_blank">Download CV</a></p>
+                <p><a href="https://github.com/Maorb23/NewTest/blob/main/Maor_proj/media/cv_files/maor-blumberg-cv_updated.pdf" target="_blank">CV Link</a></p>
                 <!-- Alternatively, embed the PDF directly -->
                 {% if cv.cv_file.url|slice:"-4:" == '.pdf' %}
                 <div>
-                    <iframe src="https://github.com/Maorb23/NewTest/blob/main/Maor_proj/media/cv_files/maor-blumberg-cv_updated.pdf" style="width:100%;height:700px;"></iframe>
+                    <iframe src="{{ cv.cv_file.url }}" style="width:100%;height:700px;"></iframe>
                 </div>
                 <!-- <embed src="{{ cv.cv_file.url }}" width="600" height="500" type="application/pdf"> -->
                 {% endif %}
