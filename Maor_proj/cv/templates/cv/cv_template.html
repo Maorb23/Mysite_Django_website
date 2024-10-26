@@ -4,23 +4,105 @@
     <title>Curriculum Vitae</title>
     {% load static %}
     <style>
-        /* Your styles here */
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cv-container {
+            max-width: 800px;
+            margin: 40px auto; /* Added top margin for spacing */
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .cv-header {
+            text-align: center;
+            margin-bottom: 40px; /* Increased margin for better spacing */
+        }
+
+        .cv-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .cv-header p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center; /* Centered the CV title */
+        }
+
+        .cv-display {
+            margin-top: 30px;
+        }
+
+        .cv-display a {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .cv-display a:hover {
+            text-decoration: underline;
+        }
+
+        .cv-display iframe {
+            width: 100%;
+            height: 1000px; /* Adjusted height for better viewing */
+            border: none;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .cv-container {
+                padding: 15px;
+            }
+
+            .cv-header h1 {
+                font-size: 28px;
+            }
+
+            .cv-header p {
+                font-size: 16px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .cv-display iframe {
+                height: 800px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="cv-container">
-        <h1>Maor Blumberg</h1>
-        <p>Email: maorblumberg@gmail.com | Phone: (+972) 54-3276073</p>
-        
-        <!-- Add more sections as needed -->
+        <!-- Header Section -->
+        <div class="cv-header">
+            <h1>Maor Blumberg</h1>
+            <p>Email: maorblumberg@gmail.com | Phone: (+972) 54-3276073</p>
+        </div>
 
         <!-- Display CV -->
         <div class="cv-display">
             <h2>Curriculum Vitae</h2>
-            <p><a href= "/media/cv_files/maor-blumberg-cv_updated.pdf" target="_blank">Download CV</a></p>
+            <p><a href="/media/cv_files/maor-blumberg-cv_updated.pdf" target="_blank">Download CV</a></p>
             <!-- Embed the PDF directly -->
             <div>
-                <iframe src="/media/cv_files/maor-blumberg-cv_updated.pdf" style="width:100%;height:700px;"></iframe>
+                <iframe src="/media/cv_files/maor-blumberg-cv_updated.pdf"></iframe>
             </div>
         </div>
     </div>
