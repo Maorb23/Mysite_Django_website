@@ -42,10 +42,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 
 def list_articles(request):
-    """
-    Lists all articles from the media/articles/ directory.
-    Allows selecting an article to view.
-    """
+    
     articles_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
     try:
         # List all files in the articles directory
@@ -74,24 +71,3 @@ def list_articles(request):
 
     return render(request, 'articles/article_template.html', context)
 
-"""
-def view_article(request, article_name):
-    """
-    Displays the selected article.
-    """
-    articles_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
-    article_path = os.path.join(articles_dir, article_name)
-
-    # Prevent directory traversal attacks
-    if '..' in article_name or '/' in article_name or '\\' in article_name:
-        raise Http404("Invalid article name.")
-
-    if not os.path.exists(article_path):
-        raise Http404("Article does not exist.")
-
-    context = {
-        'article_name': article_name,
-    }
-
-    return render(request, 'articles/view_article.html', context)
-"""
