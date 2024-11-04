@@ -128,12 +128,12 @@
             <p>Explore our latest articles below.</p>
         </div>
 
-<!--         {% if selected_article %} -->
+        {% if selected_article %}
             <!-- Selected Article Section -->
-<!--             <div class="selected-article"> -->
-<!--                 <h2>{{ selected_article|slice:":-4"|title }}</h2> -->
+            <div class="selected-article">
+                <h2>{{ selected_article|slice:":-4"|title }}</h2>
                 <!-- Embed the PDF directly if it's a PDF -->
-                <iframe src="/media/articles/CityMomentum_Project.pdf"></iframe>
+                <iframe src="{{ MEDIA_URL }}articles/{{ selected_article }}"></iframe>
             </div>
         {% else %}
             <p>Please select an article to view its details.</p>
