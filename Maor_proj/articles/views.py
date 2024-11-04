@@ -67,7 +67,7 @@ def list_articles(request):
 
     if articles:
         # Display the first article
-        first_article = articles[2]
+        first_article = articles[1]
     else:
         first_article = None
 
