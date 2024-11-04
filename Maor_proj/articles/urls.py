@@ -11,10 +11,11 @@ urlpatterns = [
 """
 
 # urls.py
+
+
 from django.urls import path
-from . import views
+from .views import list_articles
 
 urlpatterns = [
-    path('', views.list_articles, name='list_articles'),
-    path('view/<str:article_name>/', views.view_article, name='view_article'),
+    path('articles/', views.list_articles, name='list_articles'),
 ]
