@@ -44,6 +44,7 @@ from django.urls import reverse
 def list_articles(request):
     """
     Lists all articles from the media/articles/ directory.
+    Allows selecting an article to view.
     """
     articles_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
     try:
@@ -54,12 +55,26 @@ def list_articles(request):
     except FileNotFoundError:
         articles = []
 
+    # Get selected article from GET parameters
+    selected_article = request.GET.get('article')
+
+    if selected_article:
+        if selected_article not in articles:
+            raise Http404("Article does not exist.")
+        # Exclude the selected article from the list of other articles
+        other_articles = [f for f in articles if f != selected_article]
+    else:
+        selected_article = None
+        other_articles = articles
+
     context = {
-        'articles': articles,
+        'selected_article': selected_article,
+        'other_articles': other_articles,
     }
 
-    return render(request, 'articles/list_articles.html', context)
+    return render(request, 'articles/article_template.html', context)
 
+"""
 def view_article(request, article_name):
     """
     Displays the selected article.
@@ -79,3 +94,4 @@ def view_article(request, article_name):
     }
 
     return render(request, 'articles/view_article.html', context)
+"""
