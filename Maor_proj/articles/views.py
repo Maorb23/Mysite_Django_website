@@ -41,33 +41,36 @@ from django.shortcuts import render
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 
+# views.py
+import os
+from django.conf import settings
+from django.shortcuts import render
+
 def list_articles(request):
-    
+    """
+    Lists all articles from the media/articles/ directory.
+    Displays the first article in the list.
+    """
     articles_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
     try:
         # List all files in the articles directory
         all_files = os.listdir(articles_dir)
-        # Filter only PDF files (or other types as needed)
+        # Filter only PDF files
         articles = [f for f in all_files if f.lower().endswith('.pdf')]
     except FileNotFoundError:
         articles = []
 
-    # Get selected article from GET parameters
-    selected_article = request.GET.get('article')
-
-    if selected_article:
-        if selected_article not in articles:
-            raise Http404("Article does not exist.")
-        # Exclude the selected article from the list of other articles
-        other_articles = [f for f in articles if f != selected_article]
+    if articles:
+        # Display the first article
+        first_article = articles[0]
     else:
-        selected_article = None
-        other_articles = articles
+        first_article = None
 
     context = {
-        'selected_article': selected_article,
-        'other_articles': other_articles,
+        'first_article': first_article,
+        'articles': articles,
     }
 
     return render(request, 'articles/article_template.html', context)
+
 
