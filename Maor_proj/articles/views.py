@@ -60,16 +60,24 @@ def list_articles(request):
     except FileNotFoundError:
         articles = []
 
-    if articles:
-        # Display the first article
+    first_article = None
+
+    # Find the first article that starts with 'City'
+    for article in articles:
+        if article.startswith('City'):
+            first_article = article
+            break  # Stop once we've found the 'City' article
+
+    # If no 'City' article found, use the first article in the list if available
+    if not first_article and articles:
         first_article = articles[0]
-    else:
-        first_article = None
+
+    # Set the remaining articles excluding the first article
+    other_articles = [a for a in articles if a != first_article]
 
     context = {
         'first_article': first_article,
-        'articles': articles,
-        'MEDIA_URL': settings.MEDIA_URL,
+        'articles': other_articles,
     }
 
     return render(request, 'articles/article_template.html', context)
