@@ -64,6 +64,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.media',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -107,7 +108,7 @@ DATABASES = {
 import dj_database_url
 database_url = os.environ.get('DATABASE_URL')
 DATABASES['default'] = dj_database_url.parse(database_url, conn_max_age=600)
-#toy database sqlite3
+
 #DATABASES['default'] = dj_database_url.config(default='sqlite:///db.sqlite3')
 """
 DATABASES = {

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Articles</title>
+    {% load static %}
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .article-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .article-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .article-header p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .selected-article {
+            margin-bottom: 40px;
+        }
+
+        .selected-article iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+        }
+
+        .other-articles {
+            margin-top: 30px;
+        }
+
+        .other-articles ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .other-articles li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .other-articles a {
+            font-size: 20px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .other-articles a:hover {
+            text-decoration: underline;
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 16px;
+            color: #28a745;
+        }
+
+        .download-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .article-container {
+                padding: 15px;
+            }
+
+            .article-header h1 {
+                font-size: 28px;
+            }
+
+            .article-header p {
+                font-size: 16px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .selected-article iframe {
+                height: 600px;
+            }
+
+            .other-articles a {
+                font-size: 18px;
+            }
+
+            .download-link {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="article-container">
+        <!-- Header Section -->
+        <div class="article-header">
+            <h1>Articles</h1>
+            <p>Explore our latest articles below.</p>
+        </div>
+
+        {% if selected_article %}
+            <!-- Selected Article Section -->
+            <div class="selected-article">
+                <h2>{{ selected_article|slice:":-4"|title }}</h2>
+                <!-- Embed the PDF directly if it's a PDF -->
+                <iframe src="{{ MEDIA_URL }}articles/{{ selected_article }}"></iframe>
+            </div>
+        {% else %}
+            <p>Please select an article to view its details.</p>
+        {% endif %}
+
+        <!-- Other Articles Section -->
+        <div class="other-articles">
+            <h2>Other Articles</h2>
+            <ul>
+                {% for article in other_articles %}
+                    <li>
+                        <!-- Link to view the selected article -->
+                        <a href="?article={{ article|urlencode }}">{{ article|slice:":-4"|title }}</a>
+                        <!-- Download link -->
+                        - <a href="{{ MEDIA_URL }}articles/{{ article }}" download class="download-link">Download</a>
+                    </li>
+                {% empty %}
+                    <li>No other articles available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
