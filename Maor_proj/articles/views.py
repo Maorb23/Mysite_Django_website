@@ -69,6 +69,7 @@ def list_articles(request):
     context = {
         'first_article': first_article,
         'articles': articles,
+        'MEDIA_URL': settings.MEDIA_URL,
     }
 
     return render(request, 'articles/article_template.html', context)
