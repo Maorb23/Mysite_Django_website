@@ -71,10 +71,11 @@ def list_articles(request):
     else:
         first_article = None
 
+    other_articles = [a for a in articles if a != first_article]
+
     context = {
         'first_article': first_article,
-        'articles': articles[!=first_article]
-        'MEDIA_URL': settings.MEDIA_URL,  # Add this line
+        'articles': other_articles,
     }
 
     return render(request, 'articles/article_template.html', context)
