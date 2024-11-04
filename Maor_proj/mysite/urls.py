@@ -29,7 +29,7 @@ urlpatterns = [
     path('', views2.main_index, name='main_index'),  # The index view
     #path('', views.main_index, name='main_index'),
     path('cv/', include('Maor_proj.cv.urls', namespace='Maor_proj.cv')),
-    path('articles/', include(('Maor_proj.articles.urls', 'Maor_proj.articles'), namespace='Maor_proj.articles')),
+    path('articles/', include('Maor_proj.articles.urls', namespace='Maor_proj.articles')),
     path('polls/', include('Maor_proj.polls.urls')),  # Include the polls URLs
     path('admin/', admin.site.urls),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
