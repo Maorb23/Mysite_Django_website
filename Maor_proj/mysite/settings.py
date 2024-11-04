@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'Maor_proj.polls.apps.PollsConfig',
     'Maor_proj.cv.apps.CvConfig',
     'Maor_proj.articles.apps.ArticlesConfig',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
+    'channels',
+    #'bootstrap4',  # For styling (optional)
+    'Maor_proj.birthday_problem.apps.BirthdayProblemConfig',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_plotly_dash.middleware.BaseMiddleware',
+    'django_plotly_dash.middleware.ExternalRedirectionMiddleware',
 ]
 
 ROOT_URLCONF = 'Maor_proj.mysite.urls'
@@ -106,18 +112,18 @@ DATABASES = {
 
 # run with waitress: waitress-serve --port=8000 Maor_proj.mysite.wsgi:application
 import dj_database_url
-database_url = os.environ.get('DATABASE_URL')
-DATABASES['default'] = dj_database_url.parse(database_url, conn_max_age=600)
+#database_url = os.environ.get('DATABASE_URL')
+#DATABASES['default'] = dj_database_url.parse(database_url, conn_max_age=600)
 
 #DATABASES['default'] = dj_database_url.config(default='sqlite:///db.sqlite3')
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -155,6 +161,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 DEBUG = True  # (Leave True for testing, but set to False for production)
+# Channels configuration
+ASGI_APPLICATION = 'Maor_proj.mysite.routing.application'
+
+# Static files for django-plotly-dash
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django_plotly_dash.finders.DashAssetFinder',
+    'django_plotly_dash.finders.DashComponentFinder',
+    'django_plotly_dash.finders.DashAppDirectoryFinder',
+]
 
 # Define the location for static files
 STATIC_URL = '/static/'

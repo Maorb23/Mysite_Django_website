@@ -32,6 +32,7 @@ urlpatterns = [
     path('articles/', include('Maor_proj.articles.urls', namespace='Maor_proj.articles')),
     path('polls/', include('Maor_proj.polls.urls')),  # Include the polls URLs
     path('admin/', admin.site.urls),
+    path('birthday/', include('Maor_proj.birthday_problem.urls', namespace='Maor_proj.birthday_problem')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

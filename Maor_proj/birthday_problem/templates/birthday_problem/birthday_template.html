@@ -1,0 +1,28 @@
+<!-- birthday_problem/templates/birthday_problem/birthday_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Birthday Problem Simulation</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Include Plotly JS library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Birthday Problem Simulation</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Run Simulation</button>
+    </form>
+
+    {% if probability %}
+        <h2>Results</h2>
+        <!-- Display the plot before the probability -->
+        <div>
+            {{ plot_div|safe }}
+        </div>
+        <p>Probability of at least two shared birthdays in a group of {{ form.n_students.value }} people: {{ probability|floatformat:4 }}</p>
+    {% endif %}
+</body>
+</html>
