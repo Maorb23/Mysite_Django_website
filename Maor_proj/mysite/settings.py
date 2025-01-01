@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'Maor_proj.mysite.wsgi.application'
     #}
 #}
         
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -110,7 +110,15 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
+"""
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,  # Optimize connection pooling
+        ssl_require=True,  # Enforce SSL for Render
+    )
+}
 
 # run with waitress: waitress-serve --port=8000 Maor_proj.mysite.wsgi:application
 import dj_database_url
