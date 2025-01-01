@@ -21,18 +21,23 @@ from django.urls import include, path
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-
+from Maor_proj.userlogin import views
+from Maor_proj.userlogin.views import test_messages
 
 from . import views2
 
 urlpatterns = [
     path('', views2.main_index, name='main_index'),  # The index view
-    #path('', views.main_index, name='main_index'),
+    path('<int:year>/<str:month>', views2.main_index, name='main_index'),
     path('cv/', include('Maor_proj.cv.urls', namespace='Maor_proj.cv')),
     path('articles/', include('Maor_proj.articles.urls', namespace='Maor_proj.articles')),
     path('polls/', include('Maor_proj.polls.urls')),  # Include the polls URLs
     path('admin/', admin.site.urls),
+    path('userlogin/', include('Maor_proj.userlogin.urls', namespace='Maor_proj.userlogin')),
+    path('userlogin/', include('django.contrib.auth.urls')),
     path('birthday/', include('Maor_proj.birthday_problem.urls', namespace='Maor_proj.birthday_problem')),
+    path('test/', test_messages, name='test_messages'),
+
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

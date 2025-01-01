@@ -1,4 +1,6 @@
-{% load static %}
+<!-- polls/index.html -->
+
+<!-- {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 {% if latest_question_list %}
@@ -9,4 +11,36 @@
     </ul>
 {% else %}
     <p>No polls are available.</p>
-{% endif %}
+{% endif %} -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Polls Index</title>
+</head>
+<body class="bg-light text-dark">
+    <header class="bg-white border-bottom py-2 px-3">
+        <a href="{% url 'main_index' %}" class="fs-4 fw-bold text-decoration-none" style="color: #212529;">MentorCircle</a>
+    </header>
+
+    <div class="container mt-4">
+        {% if latest_question_list %}
+            <ul class="list-group">
+            {% for question in latest_question_list %}
+                <li class="list-group-item">
+                    <a href="{% url 'Maor_proj.polls:detail' question.id %}" class="btn btn-outline-primary nav-link">{{ question.question_text }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">No polls are available.</p>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

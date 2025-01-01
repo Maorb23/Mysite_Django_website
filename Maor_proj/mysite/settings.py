@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'channels',
     #'bootstrap4',  # For styling (optional)
     'Maor_proj.birthday_problem.apps.BirthdayProblemConfig',
+    'Maor_proj.userlogin.apps',
 ]
+#MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,12 +119,15 @@ import dj_database_url
 
 #DATABASES['default'] = dj_database_url.config(default='sqlite:///db.sqlite3')
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -183,6 +188,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'mysite', 'static'),
 ]
 
+
+
 # Optional: Add MEDIA settings if you have user uploads
 #MEDIA_URL = '/media/'
 
@@ -202,3 +209,4 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = 'main_index'
