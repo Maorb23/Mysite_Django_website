@@ -6,9 +6,5 @@ startCommand = "gunicorn --bind 0.0.0.0:$PORT Maor_proj.mysite.wsgi:application"
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
 
-[build.nixpacksConfig]
-providers = ["python"]
-
 [variables]
 PYTHON_VERSION = "3.12"
-NIXPACKS_BUILD_PHASE_CACHE_DIRECTORIES = "/root/.cache/pip"
