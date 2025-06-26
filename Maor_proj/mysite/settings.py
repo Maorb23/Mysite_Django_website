@@ -16,7 +16,11 @@ import dj_database_url
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-CSRF_TRUSTED_ORIGINS = ['https://mysite-mocl.onrender.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://mysite-mocl.onrender.com',  # Keep for transition period
+    'https://*.railway.app',  # Add Railway domain
+    'https://*.up.railway.app'  # Add Railway custom domains
+]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
